@@ -1,0 +1,22 @@
+{
+  "name": "skillswap_server",
+  "version": "1.0.0",
+  "description": "a application for skill exchange",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "sk mursalin",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.17.0"
+  }
+}
