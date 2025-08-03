@@ -26,6 +26,21 @@ const signupValidation = (req) => {
 
 }
 
+const loginValidation = (req) => {
+    const { email, password } = req.body
+    if (!email) {
+        throw new Error("please enter email")
+    } else if (!validator.isEmail(email)) {
+        throw new Error("please enter valid email syntax")
+    }
+    if (!password) {
+        throw new Error("please enter password")
+    } else if (password.length < 6) {
+        throw new Error("password should at least 6 character")
+    }
+
+}
 module.exports = {
-    signupValidation
+    signupValidation,
+    loginValidation
 }
