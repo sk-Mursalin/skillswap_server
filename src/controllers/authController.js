@@ -20,10 +20,10 @@ const signupUser = async (req, res) => {
             password: hashPassword
         });
         await user.save()
-        res.status(201).json(" account created succesfully")
+        res.status(201).json({ message: "account created succesfully" });
 
     } catch (err) {
-        res.status(400).json(err.message)
+        res.status(400).json({ message: err.message });
     }
 }
 
@@ -42,13 +42,20 @@ const loginUser = async (req, res) => {
         }
 
         const token = jwt.sign({ _id: user._id }, "937@msk");
-        res.cookie("token", token)
-        res.status(200).json("welcome to skillswap")
+        res.cookie("token", token, { maxAge: 2 * 24 * 60 * 60 * 1000 })
+        res.status(200).json({ message: "welcome to skillswap" })
     } catch (err) {
-        res.status(400).json(err.message)
+        res.status(400).json({ message: err.message })
     }
 }
+
+const logoutUser = (req, res) => {
+    res.cookie("token", "", {maxAge: 0});
+    res.status(200).json({ message: "logout successfully!" })
+}
+
 module.exports = {
     signupUser,
-    loginUser
+    loginUser,
+    logoutUser
 }
