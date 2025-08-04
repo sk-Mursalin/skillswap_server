@@ -1,11 +1,9 @@
-const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { signupValidation, loginValidation } = require("../utils/validation");
 const User = require("../models/user")
-const authRoute = express.Router();
 
-authRoute.post("/signup", async (req, res) => {
+const signupUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body
 
     try {
@@ -27,9 +25,9 @@ authRoute.post("/signup", async (req, res) => {
     } catch (err) {
         res.status(400).json(err.message)
     }
-});
+}
 
-authRoute.post("/login", async (req, res) => {
+const loginUser = async (req, res) => {
     const { email, password } = req.body
     try {
         loginValidation(req);
@@ -49,6 +47,8 @@ authRoute.post("/login", async (req, res) => {
     } catch (err) {
         res.status(400).json(err.message)
     }
-});
-
-module.exports = authRoute;
+}
+module.exports = {
+    signupUser,
+    loginUser
+}

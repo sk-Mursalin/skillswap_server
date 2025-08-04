@@ -1,6 +1,6 @@
 const express = require("express");
 const dbConnection = require("./config/dataBaseConfig");
-const authRoute = require("./routes/auth_route");
+const authRoute = require("./routes/auth");
 const app = express();
 
 app.use(express.json());
