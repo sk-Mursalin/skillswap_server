@@ -40,7 +40,15 @@ const loginValidation = (req) => {
     }
 
 }
+
+const editFieldValidation = (req) => {
+    const acceptedFields = ["firstName", "lastName", "gender", "age", "skillsWantLearn", "skillsCanTeach", "photoUrl", "availability"]
+    const isAllow = Object.keys(req.body).every((el) => acceptedFields.includes(el));
+    return isAllow
+}
+
 module.exports = {
     signupValidation,
-    loginValidation
+    loginValidation,
+    editFieldValidation
 }

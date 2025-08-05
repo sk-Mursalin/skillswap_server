@@ -34,7 +34,7 @@ const userSchema = mongoose.Schema({
         min: 18
     },
 
-    skills: {
+    skillsWantLearn: {
         type: [String]
     },
     skillsCanTeach: {

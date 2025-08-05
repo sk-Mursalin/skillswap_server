@@ -2,11 +2,13 @@ const express = require("express");
 const cookieParser = require("cookie-parser")
 const dbConnection = require("./config/dataBaseConfig");
 const authRoute = require("./routes/auth");
+const profileRouter = require("./routes/profile");
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use("/",authRoute);
+app.use("/", authRoute);
+app.use("/", profileRouter);
 
 
 
