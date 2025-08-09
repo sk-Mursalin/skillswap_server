@@ -3,12 +3,14 @@ const cookieParser = require("cookie-parser")
 const dbConnection = require("./config/dataBaseConfig");
 const authRoute = require("./routes/auth");
 const profileRouter = require("./routes/profile");
+const matchRouter = require("./routes/match");
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
 app.use("/", authRoute);
 app.use("/", profileRouter);
+app.use("/", matchRouter);
 
 
 
