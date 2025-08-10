@@ -8,8 +8,8 @@ const mutualMatch = async (req, res) => {
                 { skillsWantLearn: { $in: skillsCanTeach } },
                 { skillsCanTeach: { $in: skillsWantLearn } }
             ]
-        });
-        res.send(mutualUser)
+        }).select("-email -password")
+        res.status(200).json({ data: mutualUser })
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
