@@ -47,8 +47,22 @@ const editFieldValidation = (req) => {
     return isAllow
 }
 
+const connectionStatusValidation = (req) => {
+    const acceptedStatus = ["interested", "ignored"]
+    const { status, toUserId } = req.params
+
+    if (!acceptedStatus.includes(status)) {
+        throw new Error("please enter a valid status")
+    }
+
+    if (!toUserId) {
+        throw new Error("please send Id of target user ")
+    }
+}
+
 module.exports = {
     signupValidation,
     loginValidation,
-    editFieldValidation
+    editFieldValidation,
+    connectionStatusValidation
 }
