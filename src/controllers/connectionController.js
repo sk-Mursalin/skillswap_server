@@ -15,6 +15,28 @@ const connectionRequest = async (req, res) => {
         if (_id.toString() === toUserId) {
             throw new Error("can't send request to yourself")
         }
+
+        const isConnectionExist = await ConnectionModel.findOne({
+            $or: [
+                {
+                    $and: [
+                        { fromUser: _id },
+                        { toUser: toUserId }
+                    ]
+                },
+
+                {
+                    $and: [
+                        { fromUser: toUserId },
+                        { toUser: _id }
+                    ]
+                }
+            ]
+        });
+
+        if (isConnectionExist) {
+            throw new Error("connection request already exist ")
+        }
         const connectionRequest = ConnectionModel({
             status,
             toUser: toUserId,
