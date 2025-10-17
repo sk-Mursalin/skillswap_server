@@ -44,7 +44,7 @@ const connectionRequest = async (req, res) => {
         });
 
         await connectionRequest.save();
-        res.status(201).json({ message: `you send friend requst to ${targetUserExist.lastName}` })
+        res.status(201).json({ message: `you are  ${status}  ${targetUserExist.lastName}` })
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
